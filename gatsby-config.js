@@ -1,8 +1,8 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `Ben Langham`,
+    description: `Hi, I'm Ben. I'm a freelance web developer and digital artist.`,
+    author: `Ben Langham`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -27,8 +27,18 @@ module.exports = {
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+    {
+      resolve: `gatsby-source-sanity`,
+      options: {
+        projectId: `pmtwi298`,
+        dataset: `production`,
+        graphqlTag: "default",
+        overlayDrafts: true,
+        watchMode: true,
+        token:
+          "skYVdMf8vSUHEDzSHNvhHnAlCJaHousVhWfOptv0aTyFJ6C0mIQpeH83YbiegXULW0NqP10zYbxab6pEWfOQc1vvoP0YORdla3lrlQnIvaZhXYuURyZJgEj8YJBiZWm6CmNLl7B62wo2BQiQsDjGd0NFSiBLKaMbHbHOAqB4rb8z9iQ74DIa",
+      },
+    },
+    `gatsby-plugin-sass`,
   ],
 }

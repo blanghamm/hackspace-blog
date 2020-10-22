@@ -1,22 +1,69 @@
 import React from "react"
-import { Link } from "gatsby"
-
 import Layout from "../components/layout"
 import Image from "../components/image"
 import SEO from "../components/seo"
+import "../styles/styles.scss"
+import { graphql } from "gatsby"
+import BlogPost from "../templates/blog-post"
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
+export const pageQuery = graphql`
+  query MyQuery {
+    allSanityPost {
+      nodes {
+        id
+        author {
+          name
+        }
+        categories {
+          title
+        }
+        title
+        mainImage {
+          asset {
+            fluid {
+              ...GatsbySanityImageFluid
+            }
+          }
+        }
+        body {
+          children {
+            text
+          }
+        }
+      }
+    }
+  }
+`
+
+const IndexPage = ({ data }) => {
+  const posts = data.allSanityPost.nodes
+  return (
+    <div className="main-container">
+      <SEO title="Home" />
+      <div className="inner-card-container">
+        <div className="card-box">
+          <div className="card-right" />
+          <div className="inner-card">
+            <div className="words">
+              <span className="first-words">Hi, I’m Ben.</span>
+              <br />
+              Here's my blog <br />
+              for Hackspace.
+            </div>
+            <Image />
+          </div>
+        </div>
+        <div className="scroll-container">
+          <p className="scroll-text">
+            <span className="first-word-scroll">Scroll</span> for blog
+          </p>
+        </div>
+      </div>
+      {posts.map(post => (
+        <BlogPost post={post} key={post.id} />
+      ))}
     </div>
-    <Link to="/page-2/">Go to page 2</Link> <br />
-    <Link to="/using-typescript/">Go to "Using TypeScript"</Link>
-  </Layout>
-)
+  )
+}
 
 export default IndexPage
