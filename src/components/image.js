@@ -18,8 +18,8 @@ const Image = () => {
     query {
       placeholderImage: file(relativePath: { eq: "ben-profile.jpg" }) {
         childImageSharp {
-          fixed(width: 212, height: 212) {
-            ...GatsbyImageSharpFixed
+          fluid(maxWidth: 212, maxHeight: 212) {
+            ...GatsbyImageSharpFluid
           }
         }
       }
@@ -27,7 +27,7 @@ const Image = () => {
   `)
 
   return (
-    <Img fixed={data.placeholderImage.childImageSharp.fixed} alt="avatar" />
+    <Img fluid={data.placeholderImage.childImageSharp.fluid} alt="avatar" />
   )
 }
 
