@@ -3,7 +3,7 @@ import React from "react"
 import Img from "gatsby-image"
 
 const Post = ({ post }) => {
-  const body = post.body
+  /** @namespace  post.mainImage **/
   return (
     <Layout>
       <div className="blog-post-container">
@@ -13,7 +13,7 @@ const Post = ({ post }) => {
           fluid={post.mainImage.asset.fluid}
           alt={post.title}
         />
-        {body.map(({ children: content }, i) => (
+        {post.body.map(({ children: content }, i) => (
           <p
             key={content.length}
             className="blog-post-para"

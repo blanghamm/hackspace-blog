@@ -35,6 +35,7 @@ export const pageQuery = graphql`
 `
 
 const IndexPage = ({ data }) => {
+  /** @namespace data.allSanityPost **/
   const posts = data.allSanityPost.nodes
   return (
     <div className="main-container">
