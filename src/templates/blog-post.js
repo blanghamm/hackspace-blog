@@ -13,11 +13,11 @@ const Post = ({ post }) => {
           fluid={post.mainImage.asset.fluid}
           alt={post.title}
         />
-        {body.map(({ children: content }) => (
+        {body.map(({ children: content }, i) => (
           <p
             key={content.length}
             className="blog-post-para"
-            dangerouslySetInnerHTML={{ __html: content[0].text }}
+            dangerouslySetInnerHTML={{ __html: content[i].text }}
           />
         ))}
       </div>
